@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h2>Your Cart</h2>
+        </div>
+
+        {% for item in items %}
+            <article class="media content-section">
+                <div class="media-body">
+                    <h2>{{ item.item }} </h2><h4>{{ item.qty  }} Units &emsp; x &emsp;{{ item.price}} Rs. &emsp; ------------------------------- &emsp; {{ item.total }} Rs.</h4>
+                </div>
+                
+                <a href ="/editCart?id={{ item.id }}"><button class="btn btn-info" style="margin: 10px;"">Edit</button></a>
+            </article>
+        {% endfor %}
+        {% if cartLen > 0 %} 
+            <article class="media content-section">
+                <div class=" "media-body" >
+                    <h2>Your total is = {{ total }} Rs. </h2>
+                </div>
+            </article>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{ form.buy(class="btn btn-outline-info") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.back(class="btn btn-outline-info") }}
+                    </div>
+                </fieldset>
+            </form>
+        {% else %}
+            <h2>No items in cart!</h2>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{ form.back(class="btn btn-outline-info") }}
+                    </div>
+                </fieldset>
+            </form>
+        {% endif %}
+        
+
+        
+    </div>
+</article>
+{% endblock content %}

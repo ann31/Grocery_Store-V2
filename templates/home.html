@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="app">
+        {{ message }}
+    </div>
+    {% for cat in items %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h4>{{ cat[0] }}</h4>
+                </div>
+                <br>
+                {% for item in cat[2] %}
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <h5>{{ item['name'] }}</h5>
+                            <h6>MRP: {{ item['price'] }}Rs</h6>
+                            <h6>{{item['stock'] }} piece(s) left</h6>
+                        </div>
+                        {% if item['stock'] == '0' %} 
+                            <button class="btn btn-info" style="margin: 10px;">Out of stock</button>
+                        {% else %}
+                            <a href ="/addItem?id={{ item['id']}}"><button class="btn btn-info" style="margin: 10px;">Add Item</button></a>
+                        {% endif %}
+                    </article>
+                {% endfor %}
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
+

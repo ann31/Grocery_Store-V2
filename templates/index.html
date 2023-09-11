@@ -1,0 +1,17 @@
+{% extends "managerLayout.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body" >
+            <h2>Click here to generate your Report!</h2>
+            <form method="POST" action="">
+                <!-- part of how the secret key protects us -->
+                {{ form.hidden_tag() }} 
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{ form.GenerateBtn(class="btn btn-outline-info") }}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </article>
+{% endblock %}

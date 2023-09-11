@@ -1,0 +1,20 @@
+{% extends "adminLayout.html" %}
+{% block content %}
+    <div class="content-section">
+        <!-- action blank means the information will get posted to the same route-->
+        <div class="article-metadata">
+            <h4>Edit Item</h4>
+        </div>
+        <article class="media content-section">
+            <div class="media-body">
+                <h2><b>{{ item.itemName }}</b> </h2>
+                <h4>{{ item.stock }} Units available</h4>
+                <h4>{{ item.price}} Rs. per unit </h4>
+            </div>
+            <div style="width:500px;">
+                <div style="float: left; width: 130px"><a href ="/edit?id={{item.id}}&user={{user}}"><button class="btn btn-info" style="margin: 10px;"">Edit Stock</button></a></div>
+                <div style ="float: right; width: 130px"><a href ="/editPrice?user={{user}}&={{item.id}}"><button class="btn btn-info" style="margin: 10px;"">Edit Price</button></a></div>
+            </div> 
+        </article>
+    </div>
+{% endblock %}

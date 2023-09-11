@@ -1,0 +1,34 @@
+{% extends "managerLayout.html" %}
+{% block content %}
+    {% for cat in items %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <h4>{{ cat[0] }}</h4>
+                </div>
+                <br>
+                {% if cat[3] == 0 %}
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <h5>No items available in this category!</h5>
+                        </div>
+                    </article>
+                {% else %}
+                    {% for item in cat[2] %}
+                        <article class="media content-section">
+                            <div class="media-body">
+                                <h5>{{ item['name'] }}</h5>
+                                <h6>MRP: {{ item['price'] }}Rs</h6>
+                                <h6>{{item['stock'] }} piece(s) left</h6>
+                            </div>
+                            <a href ="/editPage?user={{user}}&id={{item['id']}}"><button class="btn btn-info" style="margin: 10px;"">Edit Item</button></a>
+                        </article>
+                    {% endfor %}
+                {% endif %}
+                <a href ="/newItem?user={{user}}&catitem={{cat[1]}}"><button class="btn btn-info" style="margin: 10px;">add Item</button></a>
+                <a href ="/deleteCategory?user={{user}}&id={{cat[1]}}"><button class="btn btn-info" style="margin: 10px;" >Delete Category</button></a>
+            </div>
+        </article>
+    {% endfor %}
+    <a href ="/newCategory?user={{user}}"><button class="btn btn-info" style="margin: 10px;"">Add Category</button></a>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <!-- action blank means the information will get posted to the same route-->
+        <div class="article-metadata">
+            <h4>{{ item.itemName }}</h4>
+        </div>
+
+        {% if item.stock > 0 %}
+        <p>
+            Availability : In Stock
+        </p>
+        {% else %}
+        <p>
+            Availability : Not in Stock
+        </p>
+        <p>
+            Price / unit : {{ item.price }} 
+        </p>
+        {% endif %}
+        
+        <form method="POST" action="">
+            <!-- part of how the secret key protects us -->
+            {{ form.hidden_tag() }} 
+            <fieldset class="form-group">
+                
+                <div class="form-group">
+                    <!-- this is where we use the fields from form-->
+                    {{ form.quantity.label( class = "form-control-label") }}
+                    {{ form.quantity( class = "form-control form-control-label") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

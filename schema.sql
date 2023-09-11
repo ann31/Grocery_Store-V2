@@ -1,0 +1,55 @@
+DROP TABLE IF EXISTS items;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS requests;
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userName TEXT NOT NULL,
+    email TEXT NOT NULL,
+    userPassword TEXT NOT NULL, 
+    adminRights INTEGER DEFAULT 0,
+    shopCount INTEGER DEFAULT 0,
+    total INTEGER DEFAULT 0
+);
+
+CREATE TABLE items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    itemName TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    stock INTEGER NOT NULL,
+    categoryid INTEGER NOT NULL,
+    unitsSold INTEGER DEFAULT 0
+);
+
+
+CREATE TABLE category (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    categoryName TEXT NOT NULL,
+    ran INTEGER
+);
+
+CREATE TABLE cart (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userid INTEGER,
+    itemid INTEGER NOT NULL,
+    item TEXT NOT NULL,
+    qty INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    total INTEGER NOT NULL,
+    categoryid INTEGER NOT NULL, 
+    category TEXT
+);
+
+CREATE TABLE requests(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    reqtype TEXT NOT NULL ,
+    uName TEXT,
+    uEmail TEXT,
+    uPass TEXT,
+    catName TEXT,
+    catId INTEGER
+);
